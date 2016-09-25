@@ -1,49 +1,68 @@
+/**
+ * Copyright 2014-present Amberfog
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.ihc.cefet.cidadealerta;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.ramotion.foldingcell.FoldingCell;
-import java.util.ArrayList;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+
 public class MainActivity extends BaseActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
+    @Bind(R.id.fragment)
+    FrameLayout fragment;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     private static MenuDrawerFragment mDrawerFragment;
-    private final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-    private FoldingCellListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        if (savedInstanceState == null) {
+            FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
+            trans.add(R.id.fragment, MainFragment.newInstance(null));
+            trans.commit();
+        }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Titulo");
+        configActionBar(R.string.cidade_alerta, true);
+        toolbar.setTitle(R.string.cidade_alerta);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         setUpNavigation();
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,46 +70,6 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
                         .setAction("Action", null).show();
             }
         });
-
-        RecyclerView theListView = (RecyclerView) findViewById(R.id.mainListView);
-        theListView.setLayoutManager(layoutManager);
-
-
-        // prepare elements to display
-        final ArrayList<Item> items = Item.getTestingList();
-
-        // add custom btn handler to first list item
-        items.get(0).setRequestBtnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "CUSTOM HANDLER FOR FIRST BUTTON", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // create custom adapter that holds elements and their state (we need hold a id's of unfolded elements for reusable elements)
-        adapter = FoldingCellListAdapter.newInstance(this, items);
-
-        // add default btn handler for each request btn on each item if custom handler not found
-        adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // set elements to adapter
-        theListView.setAdapter(adapter);
-
-        // set on click event listener to list view
-//        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-//                // toggle clicked cell state
-//                ((FoldingCell) view).toggle(false);
-//                // register in adapter that state for selected cell is toggled
-//                adapter.registerToggle(pos);
-//            }
-//        });
     }
 
     @Override
@@ -138,6 +117,8 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
 
     @Override
     public RecyclerView.Adapter<RecyclerView.ViewHolder> getAdapter() {
-        return adapter;
+        return ((MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragment)).getAdapter();
     }
+
+
 }

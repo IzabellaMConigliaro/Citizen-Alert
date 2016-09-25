@@ -11,7 +11,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.ihc.cefet.cidadealerta.MainActivity">
+        tools:context=".MainFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,23 +20,11 @@
             android:orientation="vertical">
             <include layout="@layout/toolbar" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mainListView"
+            <FrameLayout
+                android:id="@+id/fragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/contentDividerLine"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
-                android:fitsSystemWindows="true"
-                tools:listitem="@layout/cell"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:scrollbars="none"
-                tools:context=".listview.MainActivity" />
+                android:layout_height="match_parent">
+            </FrameLayout>
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton

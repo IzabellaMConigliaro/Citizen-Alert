@@ -31,4 +31,6 @@
     <string name="closeDrawer">closeDrawer</string>
     <string name="ok">OK</string>
     <string name="favorites">Favorito de %d pessoas</string>
+    <string name="cidade_alerta">Cidade Alerta</string>
+    <string name="refresh_title">Atualizar</string>
 </resources>

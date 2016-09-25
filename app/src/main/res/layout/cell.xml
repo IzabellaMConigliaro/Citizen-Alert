@@ -6,7 +6,7 @@
     folding-cell:additionalFlipsCount="2"
     folding-cell:animationDuration="1200"
     folding-cell:backSideColor="@color/background"
-    android:layout_marginBottom="10dp"
+    android:background="@color/contentDividerLine"
     android:id="@+id/cell">
 
     <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->

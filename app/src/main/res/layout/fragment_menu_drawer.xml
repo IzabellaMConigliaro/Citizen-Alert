@@ -6,45 +6,148 @@
     android:layout_gravity="start"
     android:background="@android:color/white"
     android:orientation="vertical"
+    android:fillViewport="true"
     android:fitsSystemWindows="true"
     android:id="@+id/bgNavigation">
 
-    <LinearLayout
-        android:fitsSystemWindows="true"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <RelativeLayout
+        <LinearLayout
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:background="@color/background">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/user_avatar"
-                android:layout_marginTop="10dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:background="@android:color/white"
-                android:src="@drawable/user_placeholder"
-                />
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/background">
+
+                <ImageView
+                    android:id="@+id/user_avatar"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/user_placeholder" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_avatar"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textSize="22sp"
+                    android:drawablePadding="-24dp"
+                    android:textColor="@color/mainTextColor"
+                    android:layout_marginTop="12dp"
+                    android:drawableRight="@drawable/ic_arrow_profile"
+                    tools:text="Izabella Melendez"/>
+
+            </RelativeLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/home"
+                android:layout_marginTop="22dp"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_avatar"
-                android:layout_centerHorizontal="true"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:text="Home"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/contentDividerLine"/>
+
+            <TextView
+                android:id="@+id/my_issues"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:text="My Issues"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/contentDividerLine"/>
+
+            <TextView
+                android:id="@+id/my_favorites"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18sp"
+                android:text="My Favorites"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/contentDividerLine"/>
+
+            <TextView
+                android:id="@+id/write_issue"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:gravity="right"
+                android:text="Write New Issue"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_above="@+id/logo"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:gravity="center"
-                android:lines="1"
-                android:textSize="22sp"
-                android:textColor="@color/mainTextColor"
-                android:layout_marginTop="12dp"
-                tools:text="Izabella Melendez"/>
-
-        </RelativeLayout>
+                android:textSize="12sp"
+                android:text="About the App"/>
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/contact_us"
+                android:layout_above="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textSize="12sp"
+                android:gravity="center"
+
+                android:text="Contact Us"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"
+            />
+
+    </RelativeLayout>
 </ScrollView>

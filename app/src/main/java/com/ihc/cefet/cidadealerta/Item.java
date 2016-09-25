@@ -216,7 +216,7 @@ public class Item {
         items.add(new Item("Buraco na Rua", "Reconhecido", "Av. Amazonas 1305 - Nova Gameleira", "", 10, "17:30 - 22 de SET de 2016", 1,
                 R.drawable.pothole, "17:30", "22 de SET de 2016", "Fernando Silva", R.drawable.ic_user2, "-19.938591","-43.999396"));
         items.add(new Item("Buraco na Rua", "Aberto", "W 36th St, NY, 10029", "56th Ave, NY, 10041", 0, "17:30 - 22 de SET de 2016", 0,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", -1, "-19.938591","-43.999396"));
+                -1, "17:30", "22 de SET de 2016", "Jade Campos", -1, "-19.932158", "-43.923831"));
         items.add(new Item("Poste Sem Lâmpada", "Fechado", "12th Ave, NY, 10012", "W 57th St, NY, 10048", 8, "17:30 - 22 de SET de 2016", 2,
                 -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396"));
         items.add(new Item("Poda de Árvore", "Fechado", "56th Ave, NY, 10041", "W 36th St, NY, 10029", 0, "17:30 - 22 de SET de 2016", 2,

@@ -10,9 +10,9 @@
         android:icon="@drawable/ic_filter"
         app:showAsAction="always" />
 
-    <!--<item-->
-        <!--android:id="@+id/refresh"-->
-        <!--android:title="@string/refresh_title"-->
-        <!--android:icon="@drawable/ic_refresh"-->
-        <!--app:showAsAction="always" />-->
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh_title"
+        android:icon="@drawable/ic_refresh"
+        app:showAsAction="always" />
 </menu>

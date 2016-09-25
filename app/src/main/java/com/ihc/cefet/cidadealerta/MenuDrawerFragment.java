@@ -12,13 +12,40 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by izabellamelendezconigliaro on 23/08/16.
  */
 public class MenuDrawerFragment extends Fragment {
+
+    @Bind(R.id.user_avatar)
+    ImageView userAvatar;
+    @Bind(R.id.header)
+    RelativeLayout header;
+    @Bind(R.id.home)
+    TextView home;
+    @Bind(R.id.my_issues)
+    TextView myIssues;
+    @Bind(R.id.my_favorites)
+    TextView myFavorites;
+    @Bind(R.id.write_issue)
+    TextView writeIssue;
+    @Bind(R.id.about)
+    TextView about;
+    @Bind(R.id.contact_us)
+    TextView contactUs;
+    @Bind(R.id.logo)
+    ImageView logo;
+    @Bind(R.id.bgNavigation)
+    ScrollView bgNavigation;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -112,41 +139,26 @@ public class MenuDrawerFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-
-//    @OnClick({R.id.login_btn, R.id.username, R.id.about_btn, R.id.events_btn, R.id.contact_btn, R.id.news_btn,
-//            R.id.material_btn, R.id.favorites_btn, R.id.products_btn, R.id.services_btn, R.id.training_btn, R.id.bgNavigation})
-//    public void onClick(View view) {
-//        closeDrawer();
-//
-//        switch (view.getId()) {
-//            case R.id.login_btn:
-//                ((BaseActivity) getActivity()).openActivity(LoginActivity.class);
-//                break;
-//            case R.id.username:
-//                ((BaseActivity) getActivity()).openActivity(ProfileActivity.class);
-//                break;
-//            case R.id.about_btn:
-//                ((BaseActivity) getActivity()).openActivity(AboutActivity.class);
-//                break;
-//            case R.id.events_btn:
-//                ((BaseActivity) getActivity()).openActivity(EventsActivity.class);
-//                break;
-//            case R.id.contact_btn:
-//                ((BaseActivity) getActivity()).openActivity(ContactActivity.class);
-//                break;
-//            case R.id.material_btn:
-//                ((BaseActivity) getActivity()).openActivity(MaterialsActivity.class);
-//                break;
-//            case R.id.favorites_btn:
-//                break;
-//            case R.id.products_btn:
-//                break;
-//            case R.id.services_btn:
-//                break;
-//            case R.id.training_btn:
-//                break;
-//            case R.id.news_btn:
-//                break;
-//        }
-//    }
+    @OnClick({R.id.header, R.id.home, R.id.my_issues, R.id.my_favorites, R.id.write_issue, R.id.about, R.id.contact_us})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.header:
+                break;
+            case R.id.home:
+                closeDrawer();
+                break;
+            case R.id.my_issues:
+                break;
+            case R.id.my_favorites:
+                ((BaseActivity)getActivity()).openActivity(MyFavoritesActivity.class);
+                closeDrawer();
+                break;
+            case R.id.write_issue:
+                break;
+            case R.id.about:
+                break;
+            case R.id.contact_us:
+                break;
+        }
+    }
 }

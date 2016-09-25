@@ -28,6 +28,8 @@ import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.mypopsy.maps.StaticMap;
 import com.ramotion.foldingcell.FoldingCell;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -42,6 +44,14 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private List<Item> objects;
     private static final int EMPTY_VIEW = 10;
 
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
+
+    private boolean mIsSpaceVisible = true;
+
+    private WeakReference<ItemClickListener> mCallbackRef;
+
+
     private static Context mContext;
     // Hold a reference to the current animator,
     // so that it can be canceled mid-way.
@@ -52,15 +62,16 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     // very frequently.
     private static int mShortAnimationDuration;
 
-    public static FoldingCellListAdapter newInstance(Context context, List<Item> items) {
+    public static FoldingCellListAdapter newInstance(Context context, List<Item> items, ItemClickListener listener) {
         FoldingCellListAdapter pa = new FoldingCellListAdapter(null);
-        pa.setContext(context);
+        pa.setContext(context, listener);
         return new FoldingCellListAdapter(items);
     }
 
-    public void setContext(Context var) {
+    public void setContext(Context var, ItemClickListener listener) {
         mContext = var;
         mShortAnimationDuration = 150;
+        mCallbackRef = new WeakReference<>(listener);
 
     }
 
@@ -73,6 +84,9 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         if (viewType == EMPTY_VIEW) {
             //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty_statement, parent, false);
             //return EmptyViewHolder.newInstance(view);
+        } else if (viewType == TYPE_HEADER) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.transparent_header_view, parent, false);
+            return new HeaderItem(v);
         }
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell, parent, false);
@@ -92,9 +106,14 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 //                });
                 break;
 
-            default:
+            case TYPE_HEADER:
+                ((HeaderItem) holder).mSpaceView.setVisibility(mIsSpaceVisible ? View.VISIBLE : View.GONE);
+                ((HeaderItem) holder).mPosition = position;
+                break;
+
+            case TYPE_ITEM:
                 final ViewHolder viewHolder = (ViewHolder) holder;
-                final Item item = objects.get(position);
+                final Item item = getItem(position);
 
                 if (unfoldedIndexes.contains(position)) {
                     viewHolder.cell_layout.unfold(true);
@@ -307,14 +326,20 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public int getItemViewType(int position) {
         if(objects == null || objects.isEmpty()) {
             return EMPTY_VIEW;
+        } else if (position == 0) {
+            return TYPE_HEADER;
         }
 
-        return super.getItemViewType(position);
+        return TYPE_ITEM;
+    }
+
+    private Item getItem(int position) {
+        return objects.get(position - 1);
     }
 
     @Override
     public int getItemCount() {
-        return (objects != null && objects.size() > 0) ? objects.size() : 1;
+        return (objects != null && objects.size() > 0) ? objects.size() + 1 : 1;
     }
 
     private static OnItemClickListener listener;
@@ -332,6 +357,30 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         notifyDataSetChanged();
     }
 
+    public interface ItemClickListener {
+        void onItemClicked(int position);
+    }
+
+    class HeaderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        View mSpaceView;
+        int mPosition;
+
+        public HeaderItem(View itemView) {
+            super(itemView);
+            mSpaceView = itemView.findViewById(R.id.space);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            ItemClickListener callback = mCallbackRef != null ? mCallbackRef.get() : null;
+            if (callback != null) {
+                callback.onItemClicked(mPosition);
+            }
+
+        }
+    }
 
     // View lookup cache
     public static final class ViewHolder extends RecyclerView.ViewHolder {
@@ -650,4 +699,14 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return animator;
     }
 
+
+    public void hideSpace() {
+        mIsSpaceVisible = false;
+        notifyItemChanged(0);
+    }
+
+    public void showSpace() {
+        mIsSpaceVisible = true;
+        notifyItemChanged(0);
+    }
 }
