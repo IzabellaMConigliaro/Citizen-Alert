@@ -41,12 +41,12 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:lines="1"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:drawablePadding="-24dp"
                     android:textColor="@color/mainTextColor"
                     android:layout_marginTop="12dp"
                     android:drawableRight="@drawable/ic_arrow_profile"
-                    tools:text="Izabella Melendez"/>
+                    android:text="@string/user_name"/>
 
             </RelativeLayout>
 
@@ -126,27 +126,17 @@
                 android:textSize="12sp"
                 android:text="About the App"/>
 
-
-            <TextView
-                android:id="@+id/contact_us"
-                android:layout_above="@+id/logo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textSize="12sp"
-                android:gravity="center"
-
-                android:text="Contact Us"/>
         </LinearLayout>
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_marginBottom="25dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_logo"
+
             />
 
     </RelativeLayout>

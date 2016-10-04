@@ -126,13 +126,25 @@
 
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:background="@color/background"/>
+            <RelativeLayout
+                android:id="@+id/image_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avi"
+                    android:layout_centerInParent="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:indicatorName="LineSpinFadeLoaderIndicator"
+                    app:indicatorColor="@color/colorPrimaryDark" />
 
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:background="@color/background"/>
+            </RelativeLayout>
             <!-- content body layout -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,6 +157,45 @@
                 android:paddingTop="9dp">
 
                 <!-- dates part -->
+                <LinearLayout
+                    android:id="@+id/description_layout2"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|end"
+                        android:gravity="right|end">
+
+                        <TextView
+                            android:id="@+id/content_delivery_date_badge12"
+                            style="@style/ContentMainBadgeTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/status_content"
+                            android:text="STATUS:" />
+
+                        <TextView
+                            android:id="@+id/status_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_toRightOf="@id/content_delivery_date_badge12"
+                            android:text="Aberto"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="14sp" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/description_layout"
                     android:visibility="visible"
@@ -189,8 +240,6 @@
 
                 </LinearLayout>
 
-
-
                 <!-- addresses part -->
                 <LinearLayout
                     android:id="@+id/map_layout"
@@ -233,7 +282,7 @@
                             android:textColor="@color/mainTextColor"
                             android:textSize="14sp" />
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_below="@+id/content_to_address_2"
                             android:id="@+id/google_map_layout"
                             android:visibility="gone"
@@ -241,12 +290,13 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_height="120dp">
-                        <ImageView
-                            android:id="@+id/map"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp" />
-                        </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/map"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp" />
+                        </RelativeLayout>
 
                     </RelativeLayout>
 
@@ -378,18 +428,34 @@
                 </RelativeLayout>
 
                 <!-- request button -->
-                <TextView
+
+                <RelativeLayout
+                    android:id="@+id/button_delete"
                     android:visibility="gone"
-                    android:id="@+id/content_request_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@color/btnRequest"
-                    android:padding="10dp"
-                    android:text="@string/request_btn_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="20sp" />
+                    android:background="@color/btnRequest">
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:layout_centerInParent="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:indicatorName="BallBeatIndicator"
+                        app:indicatorColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:visibility="visible"
+                        android:background="@color/btnRequest"
+                        android:id="@+id/content_request_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="DELETAR"
+                        android:textAlignment="center"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="20sp" />
+                </RelativeLayout>
 
                 <ImageView
                     android:layout_width="match_parent"

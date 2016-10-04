@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <include layout="@layout/focus_thief"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/addPicture"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/user_avatar"
+                    android:padding="5dp"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:src="@drawable/ic_user"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/mainTextColor"
+                    android:text="Insira sua foto de perfil"/>
+
+            </LinearLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/name_tv"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_errorColor="@color/closed"
+                app:met_baseColor="#0c1118"
+                app:met_primaryColor="@color/colorAccent"
+                app:met_textColorHint="@color/colorPrimary"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:drawablePadding="9dp"
+                android:drawableLeft="@drawable/ic_user_small"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelTextColor="#0c1118"
+                app:met_floatingLabelAnimating="true"
+                android:hint="Nome Completo"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/cpf_tv"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_errorColor="@color/closed"
+                app:met_baseColor="#0c1118"
+                app:met_primaryColor="@color/colorAccent"
+                app:met_textColorHint="@color/colorPrimary"
+                android:inputType="number"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/ic_cpf"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelTextColor="#0c1118"
+                app:met_floatingLabelAnimating="true"
+                android:hint="CPF"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/email_tv"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_errorColor="@color/closed"
+                app:met_baseColor="#0c1118"
+                app:met_primaryColor="@color/colorAccent"
+                app:met_textColorHint="@color/colorPrimary"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:drawablePadding="15dp"
+                android:drawableLeft="@drawable/ic_email"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelTextColor="#0c1118"
+                app:met_floatingLabelAnimating="true"
+                android:hint="E-mail"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/password_tv"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:met_errorColor="@color/closed"
+                app:met_baseColor="#0c1118"
+                app:met_primaryColor="@color/colorAccent"
+                app:met_textColorHint="@color/colorPrimary"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:drawablePadding="15dp"
+                android:drawableLeft="@drawable/ic_lock"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                app:met_floatingLabel="normal"
+                android:drawableRight="@drawable/ic_eye"
+                app:met_floatingLabelTextColor="#0c1118"
+                app:met_floatingLabelAnimating="true"
+                android:hint="Senha"/>
+
+            <TextView
+                android:id="@+id/terms_of_use_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/mainTextColor"
+                android:textSize="12sp"
+                android:layout_marginTop="30dp"
+                android:text="@string/register_terms_of_use"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center_horizontal"
+                android:layout_marginBottom="30dp">
+                <RelativeLayout
+                    android:elevation="0dp"
+                    android:layout_marginTop="20dp"
+                    style="@style/yellowButtonTheme">
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:layout_width="35dp"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        app:indicatorName="BallBeatIndicator"
+                        app:indicatorColor="@android:color/white"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_login"
+                        android:visibility="visible"
+                        style="@style/yellowButtonTheme"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:text="Cadastrar"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

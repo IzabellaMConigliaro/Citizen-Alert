@@ -9,6 +9,7 @@
     <color name="recognized">#FFB400</color>
     <color name="opened">#7FB800</color>
     <color name="toolbar">#004B65</color>
+    <color name="white">#eeeeee</color>
 
     <color name="bgBackSideColor">#f4f0ff</color>
     <color name="bgTitleLeft">#594691</color>

@@ -16,17 +16,23 @@
 
 package com.ihc.cefet.cidadealerta;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,8 +48,11 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
     DrawerLayout mDrawerLayout;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.swipe)
+    SwipeRefreshLayout swipe;
 
     private static MenuDrawerFragment mDrawerFragment;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,16 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
         toolbar.setTitle(R.string.cidade_alerta);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
+        swipe.setColorSchemeResources(R.color.colorPrimary);
+        AndroidUtils.changeSwipeVisibility(swipe, true);
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                AndroidUtils.changeSwipeVisibility(swipe, false);
+            }
+        }, 100);
+        swipe.setEnabled(false);
+
         setUpNavigation();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +95,7 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -90,6 +110,26 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
+
+        switch (id) {
+            case R.id.filter:
+                FilterDialog.show(getSupportFragmentManager(), MainActivity.this);
+                break;
+            case R.id.refresh:
+                AndroidUtils.changeSwipeVisibility(swipe, true);
+                AndroidUtils.changeSwipeVisibility(swipe, true);
+
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        AndroidUtils.changeSwipeVisibility(swipe, false);
+                    }
+                }, 2000);
+                break;
+            case R.id.notification:
+                openActivityForResult(NotificationActivity.class, 2001);
+                break;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -120,5 +160,14 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
         return ((MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragment)).getAdapter();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 2001) {
+            menu.getItem(1).setIcon(getResources().getDrawable(R.drawable.ic_notification));
+        }
+    }
 
 }

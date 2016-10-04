@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +29,8 @@ import com.bumptech.glide.request.target.Target;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.mypopsy.maps.StaticMap;
 import com.ramotion.foldingcell.FoldingCell;
+
+import org.w3c.dom.Text;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -126,6 +130,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 viewHolder.address.setText(item.getAddress());
                 viewHolder.date.setText(item.getDate());
                 viewHolder.status.setText(item.getStatus());
+                viewHolder.status_content.setText(item.getStatus());
                 viewHolder.title.setText(item.getCategory());
                 if (TextUtils.isEmpty(item.getDescription())) {
                     viewHolder.description_layout.setVisibility(View.GONE);
@@ -134,6 +139,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     viewHolder.description_layout.setVisibility(View.VISIBLE);
                 }
                 if(item.getImage() != -1) {
+                    viewHolder.image_layout.setVisibility(View.VISIBLE);
+
                     Glide
                             .with(mContext)
                             .load(item.getImage())
@@ -141,9 +148,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             .crossFade()
                             .into(viewHolder.image);
 
-                    viewHolder.image.setVisibility(View.VISIBLE);
                 } else {
-                    viewHolder.image.setVisibility(View.GONE);
+                    viewHolder.image_layout.setVisibility(View.GONE);
                 }
                 String[] addressSplit = item.getAddress().split(" - ");
                 try {
@@ -168,6 +174,19 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     viewHolder.statusbar_view.setBackgroundColor(mContext.getResources().getColor(R.color.recognized));
                 } else {
                     viewHolder.statusbar_view.setBackgroundColor(mContext.getResources().getColor(R.color.closed));
+                }
+
+                if(item.isUserCreated()) {
+                    viewHolder.button_delete.setVisibility(View.VISIBLE);
+                    if(item.getStatusCod() == 0) {
+                        viewHolder.content_request_btn.setText("DELETAR");
+                    } else if(item.getStatusCod() == 2) {
+                        viewHolder.content_request_btn.setText("REABRIR");
+                    } else {
+                        viewHolder.button_delete.setVisibility(View.GONE);
+                    }
+                } else {
+                    viewHolder.button_delete.setVisibility(View.GONE);
                 }
 
                 viewHolder.favoriteButton2.setFavorite(item.isFavorited());
@@ -242,6 +261,29 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             ((FoldingCellListAdapter)((BaseActivity) mContext).getAdapter()).registerToggle(position);
                         }
 
+                    }
+                });
+
+                viewHolder.button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        viewHolder.content_request_btn.setVisibility(View.INVISIBLE);
+
+                        new Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                if (item.getStatusCod() == 0) {
+                                    objects.remove(item);
+                                } else if (item.getStatusCod() == 2) {
+                                    item.setStatusCod(0);
+                                    item.setStatus("Aberto");
+                                }
+                                viewHolder.cell_layout.toggle(false);
+                                ((FoldingCellListAdapter) ((BaseActivity) mContext).getAdapter()).registerToggle(position);
+
+                                notifyDataSetChanged();
+                                unfoldedIndexes.clear();
+                            }
+                        }, 500);
                     }
                 });
 
@@ -407,8 +449,12 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         LinearLayout content;
         ImageView map;
         LinearLayout map_layout;
-        LinearLayout google_map_layout;
+        RelativeLayout google_map_layout;
         FoldingCell cell_layout;
+        RelativeLayout button_delete;
+        TextView content_request_btn;
+        RelativeLayout image_layout;
+        TextView status_content;
 
         static ViewHolder newInstance(View cell) {
             MaterialFavoriteButton favoriteButton = (MaterialFavoriteButton) cell.findViewById(R.id.favoriteButton);
@@ -433,14 +479,19 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             LinearLayout content = (LinearLayout) cell.findViewById(R.id.content);
             ImageView map = (ImageView) cell.findViewById(R.id.map);
             LinearLayout map_layout = (LinearLayout) cell.findViewById(R.id.map_layout);
-            LinearLayout google_map_layout = (LinearLayout) cell.findViewById(R.id.google_map_layout);
+            RelativeLayout google_map_layout = (RelativeLayout) cell.findViewById(R.id.google_map_layout);
             FoldingCell cell_layout = (FoldingCell) cell.findViewById(R.id.cell);
+            RelativeLayout button_delete = (RelativeLayout) cell.findViewById(R.id.button_delete);
+            TextView content_request_btn = (TextView) cell.findViewById(R.id.content_request_btn);
+            RelativeLayout image_layout = (RelativeLayout) cell.findViewById(R.id.image_layout);
+            TextView status_content = (TextView) cell.findViewById(R.id.status_content);
 
             return new ViewHolder(cell, favoriteButton, image, description, contentToAddress1,
                     contentToAddress2, contentDeliveryTime, contentDeliveryDate, contentNameView,
                     favorites, statusbar_view, category, favoriteButton2, status, address,
                     date, title, content_avatar, description_layout, expanded_image, content,
-                    map, map_layout, google_map_layout, cell_layout);
+                    map, map_layout, google_map_layout, cell_layout, button_delete, content_request_btn, image_layout,
+                    status_content);
         }
 
         public ViewHolder(final View itemView, MaterialFavoriteButton favoriteButton,
@@ -453,8 +504,10 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                           TextView address, TextView date, TextView title,
                           ImageView content_avatar, LinearLayout description_layout,
                           ImageView expanded_image, LinearLayout content, ImageView map,
-                          LinearLayout map_layout, LinearLayout google_map_layout,
-                          FoldingCell cell_layout) {
+                          LinearLayout map_layout, RelativeLayout google_map_layout,
+                          FoldingCell cell_layout, RelativeLayout button_delete,
+                          TextView content_request_btn, RelativeLayout image_layout,
+                          TextView status_content) {
 
             super(itemView);
             this.favoriteButton = favoriteButton;
@@ -481,6 +534,10 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             this.map_layout = map_layout;
             this.google_map_layout = google_map_layout;
             this.cell_layout = cell_layout;
+            this.button_delete = button_delete;
+            this.content_request_btn = content_request_btn;
+            this.image_layout = image_layout;
+            this.status_content = status_content;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -634,7 +691,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    private void expand(LinearLayout map) {
+    private void expand(RelativeLayout map) {
         map.setVisibility(View.VISIBLE);
 
         final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
@@ -645,7 +702,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         mAnimator.start();
     }
 
-    private void collapse(final LinearLayout map, final boolean fold, final View v, final int position) {
+    private void collapse(final RelativeLayout map, final boolean fold, final View v, final int position) {
         int finalHeight = map.getHeight();
 
         ValueAnimator mAnimator = slideAnimator(finalHeight, 0, map);
@@ -682,7 +739,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         mAnimator.start();
     }
 
-    private ValueAnimator slideAnimator(int start, int end, final LinearLayout map) {
+    private ValueAnimator slideAnimator(int start, int end, final RelativeLayout map) {
 
         ValueAnimator animator = ValueAnimator.ofInt(start, end);
 

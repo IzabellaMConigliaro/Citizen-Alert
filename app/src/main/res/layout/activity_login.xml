@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="22dp">
+
+    <include layout="@layout/focus_thief" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/logo"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/email_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_errorColor="@color/closed"
+        app:met_baseColor="#0c1118"
+        app:met_primaryColor="@color/colorAccent"
+        app:met_textColorHint="@color/colorPrimary"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:drawablePadding="15dp"
+        android:drawableLeft="@drawable/ic_email"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        app:met_floatingLabel="normal"
+        app:met_floatingLabelTextColor="#0c1118"
+        app:met_floatingLabelAnimating="true"
+        android:hint="E-mail"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/password_tv"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_errorColor="@color/closed"
+        app:met_baseColor="#0c1118"
+        app:met_primaryColor="@color/colorAccent"
+        app:met_textColorHint="@color/colorPrimary"
+        android:inputType="textPassword"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:drawablePadding="15dp"
+        android:drawableLeft="@drawable/ic_lock"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        app:met_floatingLabel="normal"
+        android:drawableRight="@drawable/ic_eye"
+        app:met_floatingLabelTextColor="#0c1118"
+        app:met_floatingLabelAnimating="true"
+        android:hint="Senha"/>
+
+    <TextView
+        android:id="@+id/forgot_password_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_gravity="right|end"
+        android:layout_marginRight="12dp"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/forgot_password"/>
+
+    <RelativeLayout
+        android:elevation="0dp"
+        android:layout_marginTop="20dp"
+        style="@style/yellowButtonTheme">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            app:indicatorName="BallBeatIndicator"
+            app:indicatorColor="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:visibility="visible"
+            style="@style/yellowButtonTheme"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="Login"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/register_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/register"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logo" />
+    </RelativeLayout>
+
+
+</LinearLayout>

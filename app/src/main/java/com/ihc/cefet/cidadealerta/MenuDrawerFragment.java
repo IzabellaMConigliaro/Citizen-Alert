@@ -40,8 +40,6 @@ public class MenuDrawerFragment extends Fragment {
     TextView writeIssue;
     @Bind(R.id.about)
     TextView about;
-    @Bind(R.id.contact_us)
-    TextView contactUs;
     @Bind(R.id.logo)
     ImageView logo;
     @Bind(R.id.bgNavigation)
@@ -139,15 +137,18 @@ public class MenuDrawerFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.header, R.id.home, R.id.my_issues, R.id.my_favorites, R.id.write_issue, R.id.about, R.id.contact_us})
+    @OnClick({R.id.header, R.id.home, R.id.my_issues, R.id.my_favorites, R.id.write_issue, R.id.about})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.header:
+                ((BaseActivity)getActivity()).openActivity(ProfileActivity.class);
+                closeDrawer();
                 break;
             case R.id.home:
                 closeDrawer();
                 break;
             case R.id.my_issues:
+                ((BaseActivity)getActivity()).openActivity(MyIssuesActivity.class);
                 break;
             case R.id.my_favorites:
                 ((BaseActivity)getActivity()).openActivity(MyFavoritesActivity.class);
@@ -156,8 +157,8 @@ public class MenuDrawerFragment extends Fragment {
             case R.id.write_issue:
                 break;
             case R.id.about:
-                break;
-            case R.id.contact_us:
+                ((BaseActivity)getActivity()).openActivity(AboutActivity.class);
+                closeDrawer();
                 break;
         }
     }

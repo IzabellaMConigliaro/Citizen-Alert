@@ -17,9 +17,12 @@
 package com.ihc.cefet.cidadealerta;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -27,13 +30,17 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class MyFavoritesActivity extends BaseActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class MyFavoritesActivity extends BaseActivity implements ConnectivityReceiver.ConnectivityReceiverListener,
+        SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
-    private FoldingCellListAdapter adapter;
+    @Bind(R.id.swipe)
+    SwipeRefreshLayout swipe;
+
+    private SimpleFoldingCellListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +53,28 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
         toolbar.setTitle(R.string.cidade_alerta);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
+        swipe.setOnRefreshListener(this);
+        swipe.setColorSchemeResources(R.color.colorPrimary);
+        AndroidUtils.changeSwipeVisibility(swipe, true);
 
         final ArrayList<Item> items = Item.getTestingList();
-        adapter = FoldingCellListAdapter.newInstance(this, items, null);
+        for (Item i : items) {
+            i.setFavorited(true);
+        }
+        adapter = SimpleFoldingCellListAdapter.newInstance(this, items);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                recyclerView.setAdapter(adapter);
+
+                AndroidUtils.changeSwipeVisibility(swipe, false);
+            }
+        }, 2000);
     }
 
     @Override
@@ -60,6 +82,18 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
         super.onResume();
 
         CAApp.getInstance().setConnectivityListener(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -71,5 +105,20 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
 //        }
     }
 
+    @Override
+    public SimpleFoldingCellListAdapter getAdapter() {
+        return adapter;
+    }
 
+    @Override
+    public void onRefresh() {
+        AndroidUtils.changeSwipeVisibility(swipe, true);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                AndroidUtils.changeSwipeVisibility(swipe, false);
+            }
+        }, 2000);
+    }
 }

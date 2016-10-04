@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/toolbar" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/mainTextColor"
+        android:gravity="center_horizontal"
+        android:text="@string/version"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/mainTextColor"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/about_contents"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/background_border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/terms_of_use_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:textColor="@color/mainTextColor"
+            android:background="?selectableItemBackground"
+            android:paddingLeft="18dp"
+            android:text="@string/terms_of_use"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/contentDividerLine"/>
+
+        <TextView
+            android:id="@+id/privacy_policies_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:textColor="@color/mainTextColor"
+            android:background="?selectableItemBackground"
+            android:paddingLeft="18dp"
+            android:text="@string/privacy_policies"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logo" />
+    </RelativeLayout>
+
+</LinearLayout>

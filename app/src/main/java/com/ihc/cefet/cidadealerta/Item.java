@@ -23,6 +23,8 @@ public class Item {
     private int avatar;
     private String lat;
     private String lng;
+    private boolean userCreated;
+    private boolean deleted;
 
     private boolean favorited;
 
@@ -32,7 +34,7 @@ public class Item {
     }
 
     public Item(String category, String status, String address, String description, int favoriteCount, String date, int statusCod,
-                int image, String time, String dateShort, String user, int avatar, String lat, String lng) {
+                int image, String time, String dateShort, String user, int avatar, String lat, String lng, boolean userCreated) {
         this.category = category;
         this.status = status;
         this.address = address;
@@ -47,6 +49,8 @@ public class Item {
         this.avatar = avatar;
         this.lat = lat;
         this.lng = lng;
+        this.userCreated = userCreated;
+        this.deleted = false;
     }
 
     public String getCategory() {
@@ -177,6 +181,22 @@ public class Item {
         this.favorited = favorited;
     }
 
+    public boolean isUserCreated() {
+        return userCreated;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public void setUserCreated(boolean userCreated) {
+        this.userCreated = userCreated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -212,15 +232,15 @@ public class Item {
     public static ArrayList<Item> getTestingList() {
         ArrayList<Item> items = new ArrayList<>();
         items.add(new Item("Vandalismo", "Aberto", "Rua da Bahia, 30 - Lourdes", "Proteção do ponto de ônibus quebrado", 3, "17:30 - 22 de SET de 2016", 0,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396"));
+                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
         items.add(new Item("Buraco na Rua", "Reconhecido", "Av. Amazonas 1305 - Nova Gameleira", "", 10, "17:30 - 22 de SET de 2016", 1,
-                R.drawable.pothole, "17:30", "22 de SET de 2016", "Fernando Silva", R.drawable.ic_user2, "-19.938591","-43.999396"));
+                R.drawable.pothole, "17:30", "22 de SET de 2016", "Fernando Silva", R.drawable.ic_user2, "-19.938591","-43.999396", true));
         items.add(new Item("Buraco na Rua", "Aberto", "W 36th St, NY, 10029", "56th Ave, NY, 10041", 0, "17:30 - 22 de SET de 2016", 0,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", -1, "-19.932158", "-43.923831"));
+                -1, "17:30", "22 de SET de 2016", "Jade Campos", -1, "-19.932158", "-43.923831", true));
         items.add(new Item("Poste Sem Lâmpada", "Fechado", "12th Ave, NY, 10012", "W 57th St, NY, 10048", 8, "17:30 - 22 de SET de 2016", 2,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396"));
+                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
         items.add(new Item("Poda de Árvore", "Fechado", "56th Ave, NY, 10041", "W 36th St, NY, 10029", 0, "17:30 - 22 de SET de 2016", 2,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396"));
+                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
         return items;
 
     }

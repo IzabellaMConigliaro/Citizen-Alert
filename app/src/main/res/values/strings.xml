@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cidade Alerta</string>
+    <string name="app_name">Cidadão Alerta</string>
     <string name="action_settings">Settings</string>
 
     <string name="order_id_mock" translatable="false"># 1234–5678</string>
@@ -31,6 +31,36 @@
     <string name="closeDrawer">closeDrawer</string>
     <string name="ok">OK</string>
     <string name="favorites">Favorito de %d pessoas</string>
-    <string name="cidade_alerta">Cidade Alerta</string>
+    <string name="cidade_alerta">Cidadão Alerta</string>
     <string name="refresh_title">Atualizar</string>
+    <string name="notification_title">Notificações</string>
+    <string name="version">Version %s</string>
+    <string name="about_contents">All contents are Copyright © 2016 \nCidadão Alerta Inc. All rights reserved.</string>
+    <string name="terms_of_use">Termos de uso</string>
+    <string name="privacy_policies">Política de Privacidade</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id cursus ex. Mauris felis lacus, congue sit amet accumsan vulputate, commodo ac eros. Donec massa ipsum, consectetur vitae accumsan eget, tempus eu risus. Suspendisse pellentesque, mi sit amet porta luctus, lectus felis vehicula diam, vel ornare nisl turpis quis tellus. Vestibulum fermentum pellentesque mi non accumsan. Praesent finibus porttitor lacus. Mauris at leo eu lacus pulvinar posuere. Donec finibus orci ligula, sed interdum erat sodales et. Donec faucibus pulvinar sapien, dapibus auctor lorem egestas a. Aliquam erat volutpat. Vivamus ac dapibus tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent efficitur egestas sodales. Duis vestibulum, augue in pharetra facilisis, justo risus aliquet tortor, at tincidunt metus mauris at nunc.
+
+Ut ac metus varius, dapibus neque vel, interdum orci. Cras iaculis quam ac porta feugiat. Vestibulum tempor ultrices purus, in porta lectus tempus ut. Nam imperdiet porttitor justo, vitae blandit risus vehicula vel. Etiam quis pulvinar elit. Praesent eu diam velit. Nunc tincidunt elementum elementum. Nunc sed erat lobortis, luctus orci lobortis, porttitor turpis. Integer porttitor tempor urna, sit amet euismod augue hendrerit a. Aenean eros nunc, malesuada lacinia nibh ut, scelerisque laoreet purus. Curabitur ultrices nec nulla in condimentum. Vestibulum sollicitudin risus non lacus pretium, ut lacinia urna fermentum. Vivamus iaculis, urna finibus porttitor aliquet, mauris ante pulvinar purus, at varius urna ex non dolor.</string>
+    <string name="forgot_password"><u>Esqueceu sua senha?</u></string>
+    <string name="register">Ou crie uma conta</string>
+    <string name="forgotPasswordMessage">Digite seu e-mail de cadastro e\nenviaremos instruções para que você\npossa alterar sua senha.</string>
+    <string name="forgotPasswordMessageDialog">Enviamos um link no seu e-mail de cadastro para que você redefina sua senha.</string>
+    <string name="register_terms_of_use"><u>Ao continuar, você está aceitando o nosso \nTermos de Uso e Política de Privacidade.</u></string>
+    <string name="camera_permission">To perform this action, it is required to allow the permission.</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_crop">Cortar Imagem</string>
+    <string name="choose_pic_type">Select source</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="name"><![CDATA[<b><font color=#19647E>Nome Completo: </b> <br>%s]]></string>
+    <string name="cpf"><![CDATA[<b><font color=#19647E>CPF: </b> <br>%s]]></string>
+    <string name="email"><![CDATA[<b><font color=#19647E>E-mail: </b> <br>%s]]></string>
+
+    <string name="user_name">Usuário Teste</string>
+    <string name="user_cpf">012.345.678.90</string>
+    <string name="user_email">usuarioteste@gmail.com</string>
+    <string name="deleteProfileMessageDialog">Se você deletar seu perfil, você\nnão terá mais acesso ao aplicativo.\nPorém, seus issues não \nserão apagados. Você tem certeza que deseja deletar seu perfil?</string>
+    <string name="notification_message" formatted="false"><![CDATA[The issue <b><font color=#19647E>%s</font></b> on %s was <b>%s</b>.]]></string>
+
 </resources>
