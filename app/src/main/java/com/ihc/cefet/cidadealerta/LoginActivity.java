@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.stephentuso.welcome.WelcomeScreenHelper;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,12 +36,16 @@ public class LoginActivity extends BaseActivity {
     TextView registerBtn;
 
     private boolean isPassword = true;
+    WelcomeScreenHelper welcomeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        welcomeScreen = new WelcomeScreenHelper(this, IntroActivity.class);
+        welcomeScreen.show(savedInstanceState);
     }
 
     @OnClick(R.id.btn_login)
@@ -64,7 +69,7 @@ public class LoginActivity extends BaseActivity {
                     openActivity(MainActivity.class);
                     finish();
                 }
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -103,5 +108,11 @@ public class LoginActivity extends BaseActivity {
                 openActivity(RegisterActivity.class);
                 break;
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        welcomeScreen.onSaveInstanceState(outState);
     }
 }

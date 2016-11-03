@@ -19,10 +19,7 @@ package com.ihc.cefet.cidadealerta;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,7 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -50,6 +47,8 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
     Toolbar toolbar;
     @Bind(R.id.swipe)
     SwipeRefreshLayout swipe;
+    @Bind(R.id.connection_layout)
+    RelativeLayout connectionLayout;
 
     private static MenuDrawerFragment mDrawerFragment;
     private Menu menu;
@@ -85,8 +84,7 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                openActivity(CreateIssueActivity.class);
             }
         });
     }
@@ -121,6 +119,11 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
 
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
+                        if (AndroidUtils.isNetworkAvailable(MainActivity.this)) {
+                            connectionLayout.setVisibility(View.GONE);
+                        } else {
+                            connectionLayout.setVisibility(View.VISIBLE);
+                        }
                         AndroidUtils.changeSwipeVisibility(swipe, false);
                     }
                 }, 2000);
@@ -148,11 +151,11 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
-//        if (isConnected) {
-//            getCurrentFragment().haveConnection();
-//        } else {
-//            getCurrentFragment().noConnection();
-//        }
+        if (isConnected) {
+            connectionLayout.setVisibility(View.GONE);
+        } else {
+            connectionLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -165,7 +168,7 @@ public class MainActivity extends BaseActivity implements ConnectivityReceiver.C
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 2001) {
+        if (requestCode == 2001) {
             menu.getItem(1).setIcon(getResources().getDrawable(R.drawable.ic_notification));
         }
     }

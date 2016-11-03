@@ -29,8 +29,8 @@
     </string-array>
 
     <string-array name="notifications">
-        <item>My Issues</item>
-        <item>Favorites Issues</item>
+        <item>Minhas Ocorrências</item>
+        <item>Ocorrências Favoritas</item>
     </string-array>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.ihc.cefet.cidadealerta;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,6 +46,8 @@ public class MenuDrawerFragment extends Fragment {
     ImageView logo;
     @Bind(R.id.bgNavigation)
     ScrollView bgNavigation;
+    @Bind(R.id.contact)
+    TextView contact;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -137,28 +141,34 @@ public class MenuDrawerFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.header, R.id.home, R.id.my_issues, R.id.my_favorites, R.id.write_issue, R.id.about})
+    @OnClick({R.id.header, R.id.home, R.id.my_issues, R.id.my_favorites, R.id.write_issue, R.id.about, R.id.contact})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.header:
-                ((BaseActivity)getActivity()).openActivity(ProfileActivity.class);
+                ((BaseActivity) getActivity()).openActivity(ProfileActivity.class);
                 closeDrawer();
                 break;
             case R.id.home:
                 closeDrawer();
                 break;
             case R.id.my_issues:
-                ((BaseActivity)getActivity()).openActivity(MyIssuesActivity.class);
+                ((BaseActivity) getActivity()).openActivity(MyIssuesActivity.class);
                 break;
             case R.id.my_favorites:
-                ((BaseActivity)getActivity()).openActivity(MyFavoritesActivity.class);
+                ((BaseActivity) getActivity()).openActivity(MyFavoritesActivity.class);
                 closeDrawer();
                 break;
             case R.id.write_issue:
+                ((BaseActivity) getActivity()).openActivity(CreateIssueActivity.class);
                 break;
             case R.id.about:
-                ((BaseActivity)getActivity()).openActivity(AboutActivity.class);
+                ((BaseActivity) getActivity()).openActivity(AboutActivity.class);
                 closeDrawer();
+                break;
+            case R.id.contact:
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto", "contact@cidadealerta.com", null));
+                startActivity(Intent.createChooser(emailIntent, "Enviar e-mail..."));
                 break;
         }
     }

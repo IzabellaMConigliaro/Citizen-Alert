@@ -231,16 +231,18 @@ public class Item {
      */
     public static ArrayList<Item> getTestingList() {
         ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item("Vandalismo", "Aberto", "Rua da Bahia, 30 - Lourdes", "Proteção do ponto de ônibus quebrado", 3, "17:30 - 22 de SET de 2016", 0,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
-        items.add(new Item("Buraco na Rua", "Reconhecido", "Av. Amazonas 1305 - Nova Gameleira", "", 10, "17:30 - 22 de SET de 2016", 1,
-                R.drawable.pothole, "17:30", "22 de SET de 2016", "Fernando Silva", R.drawable.ic_user2, "-19.938591","-43.999396", true));
-        items.add(new Item("Buraco na Rua", "Aberto", "W 36th St, NY, 10029", "56th Ave, NY, 10041", 0, "17:30 - 22 de SET de 2016", 0,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", -1, "-19.932158", "-43.923831", true));
-        items.add(new Item("Poste Sem Lâmpada", "Fechado", "12th Ave, NY, 10012", "W 57th St, NY, 10048", 8, "17:30 - 22 de SET de 2016", 2,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
-        items.add(new Item("Poda de Árvore", "Fechado", "56th Ave, NY, 10041", "W 36th St, NY, 10029", 0, "17:30 - 22 de SET de 2016", 2,
-                -1, "17:30", "22 de SET de 2016", "Jade Campos", R.drawable.ic_user3, "-19.938591","-43.999396", false));
+        items.add(new Item("Buraco na Rua", "Reconhecido", "Av. Amazonas 1305 - Nova Gameleira", "", 10,
+                "17:30 - 22 de SET de 2016", 1, R.drawable.pothole, "17:30", "22 de SET de 2016", "Fernando Silva", R.drawable.ic_user2, "-19.938591","-43.999396", false));
+        items.add(new Item("Placa caída", "Aberto", "Rua Domingos Moutinho Teixeira, 84 - Palmares", "Placa de rua sem saída está tombada há três meses", 8,
+                "10:30 - 25 de SET de 2016", 0, -1, "10:30", "25 de SET de 2016", "Joana Rosa", R.drawable.ic_user3, "-19.8709149","-43.9357973", true));
+        items.add(new Item("Poste sem luz", "Fechado", "Rua Juvenal de Melo Senra, 663 - Belvedere", "Vários postes da praça estão sem luz", 20,
+                "17:15 - 02 de JUL de 2016", 2, -1, "17:15", "02 de JUL de 2016", "João Teixeira", -1, "-19.9753624","-43.9497407", false));
+        items.add(new Item("Vandalismo", "Reconhecido", "Rua Mario Martins, 358 - Pompéia", "Muro pichado", 2,
+                "08:00 - 16 de AGO de 2016", 1, -1, "08:00", "16 de AGO de 2016", "Sonia Silva", -1, "-19.9111963","-43.9035173", false));
+        items.add(new Item("Vandalismo", "Aberto", "Rua Glocinia, 146A - Santo Andre", "Pichação", 7,
+                "22:00 - 19 de AGO de 2016", 0, -1, "22:00", "19 de AGO de 2016", "Marcelo Ribeiro", R.drawable.ic_user1, "-19.9054383","-43.9615281", false));
+        items.add(new Item("Buraco na rua", "Fechado", "Rua Pará de Minas, 455 - Padre Eustaquio", "A chuva esburacou o chão semana passada", 5,
+                "14:05 - 21 de JUL de 2016", 2, -1, "14:05", "21 de JUL de 2016", "Maria Eugênia Souza", R.drawable.ic_user5, "-19.9147484","-43.9875966", false));
         return items;
 
     }

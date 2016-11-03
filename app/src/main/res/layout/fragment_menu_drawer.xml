@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:textSize="18sp"
-                android:text="Home"/>
+                android:text="Início"/>
 
             <View
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:textSize="18sp"
-                android:text="My Issues"/>
+                android:text="Minhas Ocorrências"/>
 
             <View
                 android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:textSize="18sp"
-                android:text="My Favorites"/>
+                android:text="Ocorrências Favoritas"/>
 
             <View
                 android:layout_width="match_parent"
@@ -107,7 +107,7 @@
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:gravity="right"
-                android:text="Write New Issue"/>
+                android:text="Nova Ocorrência"/>
         </LinearLayout>
 
         <LinearLayout
@@ -123,8 +123,19 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:gravity="center"
+                android:background="?selectableItemBackground"
                 android:textSize="12sp"
-                android:text="About the App"/>
+                android:text="Sobre o App"/>
+
+            <TextView
+                android:id="@+id/contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:gravity="center"
+                android:background="?selectableItemBackground"
+                android:textSize="12sp"
+                android:text="Contato"/>
 
         </LinearLayout>
 

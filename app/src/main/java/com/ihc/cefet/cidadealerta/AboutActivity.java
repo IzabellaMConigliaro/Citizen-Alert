@@ -45,7 +45,7 @@ public class AboutActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("About", true);
+        configActionBar("Sobre", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         version.setText(getString(R.string.version, BuildConfig.VERSION_NAME));

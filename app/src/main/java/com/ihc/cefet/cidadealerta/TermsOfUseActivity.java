@@ -22,7 +22,7 @@ public class TermsOfUseActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("Terms of Use", true);
+        configActionBar("Termos de Uso", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
     }
 

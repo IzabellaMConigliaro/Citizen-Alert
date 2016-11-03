@@ -4,25 +4,52 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/contentDividerLine">
+    android:background="@android:color/white">
 
     <include layout="@layout/toolbar" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/contentDividerLine" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:fitsSystemWindows="true"
-            tools:listitem="@layout/cell"
+
+        <RelativeLayout
+            android:id="@+id/connection_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/ic_wifi"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic_empty_favorites"/>
+
+            <TextView
+                android:id="@+id/message"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ic_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="22dp"
+                android:text="Você ainda não tem ocorrência favoritas"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_below="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="22dp"
+                android:gravity="center"
+                android:layout_marginTop="-25dp"
+                android:text="Favorite as ocorrências que você deseja receber atualizações de status!"/>
+
+        </RelativeLayout>
+
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

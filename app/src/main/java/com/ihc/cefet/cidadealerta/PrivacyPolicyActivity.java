@@ -22,7 +22,7 @@ public class PrivacyPolicyActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("Privacy Policy", true);
+        configActionBar("Política de Privacidade", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
     }
 

@@ -38,7 +38,7 @@ public class ForgotPasswordActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("Esqueci minha senha", true);
+        configActionBar("Esqueci Minha Senha", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
     }
 

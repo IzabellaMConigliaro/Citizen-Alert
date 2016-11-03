@@ -45,11 +45,11 @@ public class MyIssuesActivity extends BaseActivity implements ConnectivityReceiv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_favorites);
+        setContentView(R.layout.activity_my_created_issues);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("My Issues", true);
+        configActionBar("Minhas Ocorrências", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         swipe.setOnRefreshListener(this);

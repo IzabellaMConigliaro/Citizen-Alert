@@ -33,6 +33,17 @@ public class DialogUtils {
                 .show();
     }
 
+    public static void showDialog(Context context, String title, String content, String confirmButton, String denyButton, final MaterialDialog.SingleButtonCallback callback) {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .titleColorRes(R.color.mainTextColor)
+                .content(content)
+                .positiveText(confirmButton)
+                .negativeText(denyButton)
+                .onPositive(callback)
+                .show();
+    }
+
     public static void showDialog(Context context, int title, String content, int confirmButton, int denyButton, final MaterialDialog.SingleButtonCallback callback) {
         new MaterialDialog.Builder(context)
                 .title(title)
@@ -50,6 +61,20 @@ public class DialogUtils {
 
     public static void showBasic(Context context, int content, int positive, int negative, boolean cancelable, final MaterialDialog.ButtonCallback callback) {
         new MaterialDialog.Builder(context)
+                .content(content)
+                .positiveText(positive)
+                .negativeText(negative)
+                .callback(callback)
+                .cancelable(cancelable)
+                .show();
+    }
+
+    public static void showBasic(Context context, String title, String content, String positive, String negative, boolean cancelable, final MaterialDialog.ButtonCallback callback) {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .contentGravity(GravityEnum.CENTER)
+                .titleGravity(GravityEnum.CENTER)
+                .buttonsGravity(GravityEnum.CENTER)
                 .content(content)
                 .positiveText(positive)
                 .negativeText(negative)

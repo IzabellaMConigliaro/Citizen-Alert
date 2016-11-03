@@ -35,8 +35,6 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.recycler_view)
-    RecyclerView recyclerView;
     @Bind(R.id.swipe)
     SwipeRefreshLayout swipe;
 
@@ -49,7 +47,7 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("My Favorites", true);
+        configActionBar("Ocorrências Favoritas", true);
         toolbar.setTitle(R.string.cidade_alerta);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
@@ -64,13 +62,13 @@ public class MyFavoritesActivity extends BaseActivity implements ConnectivityRec
         adapter = SimpleFoldingCellListAdapter.newInstance(this, items);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setLayoutManager(layoutManager);
 
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                recyclerView.setAdapter(adapter);
+                //recyclerView.setAdapter(adapter);
 
                 AndroidUtils.changeSwipeVisibility(swipe, false);
             }

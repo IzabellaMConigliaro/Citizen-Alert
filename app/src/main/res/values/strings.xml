@@ -34,7 +34,7 @@
     <string name="cidade_alerta">Cidadão Alerta</string>
     <string name="refresh_title">Atualizar</string>
     <string name="notification_title">Notificações</string>
-    <string name="version">Version %s</string>
+    <string name="version">Versão %s</string>
     <string name="about_contents">All contents are Copyright © 2016 \nCidadão Alerta Inc. All rights reserved.</string>
     <string name="terms_of_use">Termos de uso</string>
     <string name="privacy_policies">Política de Privacidade</string>
@@ -48,11 +48,11 @@ Ut ac metus varius, dapibus neque vel, interdum orci. Cras iaculis quam ac porta
     <string name="forgotPasswordMessageDialog">Enviamos um link no seu e-mail de cadastro para que você redefina sua senha.</string>
     <string name="register_terms_of_use"><u>Ao continuar, você está aceitando o nosso \nTermos de Uso e Política de Privacidade.</u></string>
     <string name="camera_permission">To perform this action, it is required to allow the permission.</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Cancelar</string>
     <string name="title_crop">Cortar Imagem</string>
-    <string name="choose_pic_type">Select source</string>
+    <string name="choose_pic_type">Selecione uma fonte</string>
     <string name="camera">Camera</string>
-    <string name="gallery">Gallery</string>
+    <string name="gallery">Galeria</string>
     <string name="name"><![CDATA[<b><font color=#19647E>Nome Completo: </b> <br>%s]]></string>
     <string name="cpf"><![CDATA[<b><font color=#19647E>CPF: </b> <br>%s]]></string>
     <string name="email"><![CDATA[<b><font color=#19647E>E-mail: </b> <br>%s]]></string>
@@ -61,6 +61,16 @@ Ut ac metus varius, dapibus neque vel, interdum orci. Cras iaculis quam ac porta
     <string name="user_cpf">012.345.678.90</string>
     <string name="user_email">usuarioteste@gmail.com</string>
     <string name="deleteProfileMessageDialog">Se você deletar seu perfil, você\nnão terá mais acesso ao aplicativo.\nPorém, seus issues não \nserão apagados. Você tem certeza que deseja deletar seu perfil?</string>
-    <string name="notification_message" formatted="false"><![CDATA[The issue <b><font color=#19647E>%s</font></b> on %s was <b>%s</b>.]]></string>
+    <string name="notification_message" formatted="false"><![CDATA[A ocorrência <b><font color=#19647E>%s</font></b> na %s foi <b>%s</b>.]]></string>
 
+
+    <string name="skip">Pular</string>
+    <string name="done">Finalizar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="published_issue">Sua ocorrência foi publicada com sucesso! Você receberá uma notifição para qualquer atualização de status da mesma.</string>
+
+    <string name="internet_connection">Ops! Verifique sua conexão com a Internet :)</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

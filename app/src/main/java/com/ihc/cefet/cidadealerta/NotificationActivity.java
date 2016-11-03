@@ -39,7 +39,7 @@ public class NotificationActivity extends BaseActivity implements ConnectivityRe
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        configActionBar("Notifications", true);
+        configActionBar("Notificações", true);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         layoutManager = new LinearLayoutManager(this);
